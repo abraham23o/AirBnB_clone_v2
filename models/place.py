@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 import os
 from sqlalchemy.orm import relationship
 from models.amenity import Amenity
+from models.review import Review
 
 if os.getenv('HBNB_TYPE_STORAGE') == 'db':
     place_amenity = Table('place_amenity', Base.metadata,
@@ -66,3 +67,9 @@ else:
         def amenities(self, value):
             if isinstance(value, Amenity):
                 self.amenity_ids.append(Amenity.id)
+
+        @property
+        def reviews(self):
+            from models import storage
+            all_reviews = list(storage.all(Review).values())
+            return list(filter((lambda c: c.place_id == self.id), all_reviews))
