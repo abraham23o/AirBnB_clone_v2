@@ -16,7 +16,7 @@ def do_pack():
     generates a .tgz archive from the
     contents of the web_static folder
     """
-    
+
     # Create a versions folder if it doesn't exist
     local('mkdir -p versions')
 
@@ -29,7 +29,7 @@ def do_pack():
     path_archive = os.path.join("versions", name_archive)
 
     # Create the archive
-    our_archive = local(f'tar -czvf {path_archive} {SOURCE_DISTRIBUTION}')
+    our_archive = local(f"tar -czvf {path_archive} {SOURCE_DISTRIBUTION}")
 
     # Print the size of the archive
     size_archive = os.path.getsize(path_archive)
