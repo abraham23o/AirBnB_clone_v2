@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+0-hello_route
+"""
 from flask import Flask
 
 app = Flask(__name__)
